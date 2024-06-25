@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListItensService } from 'src/app/services/dashboard/list-itens.service';
 import { LoaderService } from 'src/app/services/loading/loader.service';
 
@@ -30,19 +30,17 @@ export class PanelComponent implements OnInit {
   ngOnInit(): void {
     this.getLists()
   }
-
-  onShowme() {
-
-  }
   
   getLists() {
-    this._ListService.getItens(this.page).subscribe(item => this.items = item.results)
+    this._ListService.getItens(this.page).subscribe(item => {
+      this.items = [...this.items, ...item.results]
+    })
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event): void {
-    console.log("Event: ",event)
-    console.log('Window scrolled:', window.scrollY);
-    // Lógica adicional de scroll aqui
+  onScroll() {
+    this.page++
+    this.getLists();
+
+    console.log("Scroll here")
   }
 }
