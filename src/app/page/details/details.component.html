@@ -6,10 +6,10 @@
     <p-card class="col-12">
       <h3 class="ml-2">{{person.name}}</h3>
       <div class="body-panel-text flex">
-        <div class="col-3">
+        <div class="col-2">
           <img src="{{person.image}}" width="100%">
         </div>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap kogui__detail_content">
           <div *ngIf="person.status == 'Alive'">
             <p-tag severity="success" class="col-12">Status: {{ person.status}}</p-tag>
           </div>

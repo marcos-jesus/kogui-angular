@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from 'src/app/interfaces/ilist';
 import { ListItensService } from 'src/app/services/dashboard/list-itens.service';
 import { LoaderService } from 'src/app/services/loading/loader.service';
 
@@ -11,16 +12,7 @@ export class PanelComponent implements OnInit {
   loading$ = this._Loader.loading$
   page: number = 1
 
-  items: {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    type: string;
-    gender: string;
-    image: string;
-    created: string;
-  }[] = []
+  items: Item[] = []
 
   constructor(
     private _Loader: LoaderService,
@@ -40,7 +32,5 @@ export class PanelComponent implements OnInit {
   onScroll() {
     this.page++
     this.getLists();
-
-    console.log("Scroll here")
   }
 }
