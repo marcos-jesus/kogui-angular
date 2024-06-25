@@ -1,0 +1,35 @@
+<div class="panel grid container" #scrollContainer>
+  <div *ngIf="loading$ | async">
+    <app-loading-overlay [isLoading]="loading$"></app-loading-overlay>
+  </div>
+  <p-panel class="sm:col-6 md:col-6 lg:col-4 mt-2 mb-4" *ngFor="let item of items">
+    <ng-template pTemplate="header" class="p-0">
+      <div class="header-panel col-12">
+        <span class="text-xs font-bold">Nome: {{ item.name }}</span>
+        <span routerLink="kogui/{{item.id}}" class="kogui__panel_icon"><i class="fa-regular fa-eye"></i></span>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="body">
+      <div class="body-panel-text flex">
+        <div class="col-3">
+          <img src="{{item.image}}" width="100%">
+        </div>
+        <div class="flex flex-wrap kogui__panel_text">
+          <div *ngIf="item.status == 'Alive'">
+            <p-tag severity="success" class="col-12">Status: {{ item.status}}</p-tag>
+          </div>
+          <div *ngIf="item.status == 'Dead'">
+            <p-tag severity="danger" class="col-12">Status: {{ item.status}}</p-tag>
+          </div>
+          <div *ngIf="item.status == 'unknown'">
+            <p-tag severity="warning" class="col-12">Status: {{ item.status}}</p-tag>
+          </div>
+          <span class="col-12 text-xs">Especie: {{ item.species}}</span>
+          <span class="col-12 text-xs">Genero: {{ item.gender}}</span>
+          <span class="col-12 text-xs">Criado em: <b>{{ item.created | date:'dd/MM/yyyy'}}</b></span>
+        </div>
+      </div>
+    </ng-template>
+  </p-panel>
+</div>

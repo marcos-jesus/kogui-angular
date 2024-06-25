@@ -1,0 +1,43 @@
+<div *ngIf="loading$ | async">
+  <app-loading-overlay [isLoading]="loading$"></app-loading-overlay>
+</div>
+
+<div class="home-element">
+  <div *ngIf="loading$ | async">
+    <app-loading-overlay [isLoading]="loading$"></app-loading-overlay>
+  </div>
+  
+  <div class="grid" *ngIf="persons$ | async as person">
+    <p-card class="col-12">
+      <h3 class="ml-2">{{person.name}}</h3>
+      <div class="body-panel-text flex">
+        <div class="col-3">
+          <img src="{{person.image}}" width="100%">
+        </div>
+        <div class="flex flex-wrap">
+          <div *ngIf="person.status == 'Alive'">
+            <p-tag severity="success" class="col-12">Status: {{ person.status}}</p-tag>
+          </div>
+          <div *ngIf="person.status == 'Dead'">
+            <p-tag severity="danger" class="col-12">Status: {{ person.status}}</p-tag>
+          </div>
+          <div *ngIf="person.status == 'unknown'">
+            <p-tag severity="warning" class="col-12">Status: {{ person.status}}</p-tag>
+          </div>
+          <span class="col-12 text-xs">Especie: {{ person.species}}</span>
+          <span class="col-12 text-xs">Genero: {{ person.gender}}</span>
+          <span class="col-12 text-xs">Criado em: <b>{{ person.created | date:'dd/MM/yyyy'}}</b></span>
+          <span class="col-12 text-xs">Especie: {{ person.species}}</span>
+          <span class="col-12 text-xs">Genero: {{ person.gender}}</span>
+          <span class="col-12 text-xs">Criado em: <b>{{ person.created | date:'dd/MM/yyyy'}}</b></span>
+          <span class="col-12 text-xs">Especie: {{ person.species}}</span>
+          <span class="col-12 text-xs">Genero: {{ person.gender}}</span>
+          <span class="col-12 text-xs">Criado em: <b>{{ person.created | date:'dd/MM/yyyy'}}</b></span>
+        </div>
+      </div>
+
+      <div class="flex justify-content-end mt-4">
+      </div>
+    </p-card>
+  </div>
+</div>
